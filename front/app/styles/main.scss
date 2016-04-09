@@ -12,6 +12,17 @@ body {
   padding: 0;
 }
 
+.header .navbar-default {
+  background-color: #0b97c4;
+
+  .navbar-brand {
+    color: white;
+  }
+  li:not(.active) a {
+    color: white;
+  }
+}
+
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
