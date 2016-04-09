@@ -93,3 +93,10 @@ angular
 
     console.log("La id d'usuari és " + userId);
   });
+
+  // Wtf men!! ^^
+  var easter_egg = new Konami();
+  easter_egg.code = function() {
+    location.href = "http://www.cadizdirecto.com/wp-content/uploads/2015/12/Popular-negro-del-guasap.jpg";
+  }
+  easter_egg.load();
