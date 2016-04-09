@@ -46,7 +46,8 @@ angular
       'uiGmapgoogle-maps',
       'ngAutocomplete',
       'ui.bootstrap.tpls',
-      'ui.bootstrap.datepicker'
+      'ui.bootstrap.datepicker',
+      'pickadate'
 
   ])
   .filter('size',function(){ return _.size; })

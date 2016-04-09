@@ -24,7 +24,7 @@
             </ui-gmap-marker>
           </ui-gmap-google-map>
         </div>
-</div>
+        </div>
         <!-- DIES -->
         <div class="row form-group">
             <div class="col-md-6">
@@ -54,6 +54,8 @@
                         class="form-control"
                         id="date-limit"
                         ng-model="tra_date"
+                        pick-a-date="curDate"
+                        pick-a-date-options="{ format: 'dd/mm/yy', selectYears: true }"
                         placeholder="Data sortida">
             </div>
             <div class="col-md-6">
@@ -62,6 +64,8 @@
                         type="text"
                         class="form-control"
                         id="date-limit"
+                        pick-a-date="curDate"
+                        pick-a-date-options="{ format: 'dd/mm/yy', selectYears: true }"
                         ng-model="tra_planning_limit"
                         placeholder="Data limit">
             </div>

@@ -83,5 +83,6 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular,
       $scope.map = {center: {latitude: 39.8433, longitude: -105.1190}, zoom: 10};
     })
 
+    this.curDate = new Date();
 
 });
