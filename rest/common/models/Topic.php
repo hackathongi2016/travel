@@ -10,4 +10,17 @@ use \common\models\base\Topic as BaseTopic;
  */
 class Topic extends BaseTopic
 {
+	public function fields() {
+        $fields = array_merge(parent::fields(), ['topicProposals']);
+
+        return $fields;
+    }
+
+    /*
+	public function extraFields() {
+        $fields = parent::extraFields();
+        $fields[] = 'TopicProposals';
+        return $fields;
+    }
+    */
 }

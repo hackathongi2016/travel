@@ -32,9 +32,6 @@ use Yii;
  */
 abstract class Travel extends \yii\db\ActiveRecord
 {
-
-
-
     /**
      * @inheritdoc
      */

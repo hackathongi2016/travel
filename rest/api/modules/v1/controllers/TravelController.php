@@ -44,6 +44,46 @@ class TravelController extends ActiveController
      */
     public $modelClass = "common\models\Travel";
 
+    public function actions() {
+        return [
+            'index' => [
+                'class' => 'yii\rest\IndexAction',
+                'modelClass' => $this->modelClass,
+                'checkAccess' => [$this, 'checkAccess'],
+            ],
+            'view' => [
+                'class' => 'yii\rest\ViewAction',
+                'modelClass' => $this->modelClass,
+                'checkAccess' => [$this, 'checkAccess'],
+            ],
+            'create' => [
+                'class' => 'yii\rest\CreateAction',
+                'modelClass' => $this->modelClass,
+                'checkAccess' => [$this, 'checkAccess'],
+                'scenario' => $this->createScenario,
+            ],
+            'update' => [
+                'class' => 'yii\rest\UpdateAction',
+                'class' => 'api\modules\v1\rest\Topic\UpdateAction',
+                'checkAccess' => [$this, 'checkAccess'],
+                'scenario' => $this->updateScenario,
+            ],
+            'delete' => [
+                'class' => 'yii\rest\DeleteAction',
+                'modelClass' => $this->modelClass,
+                'checkAccess' => [$this, 'checkAccess'],
+            ],
+            'travel-topics' => [
+                'class' => 'api\modules\v1\rest\Topic\GetTravelTopics',
+                'modelClass' => $this->modelClass,
+                'checkAccess' => [$this, 'checkAccess'],
+                'scenario' => $this->updateScenario,
+            ],
+            'options' => [
+                'class' => 'yii\rest\OptionsAction',
+            ],
+        ];
+    }
 
     public function behaviors()
     {
@@ -70,6 +110,56 @@ class TravelController extends ActiveController
      */
     public function checkAccess($action, $model = null, $params = [])
     {
+    }
+}
+
+namespace api\modules\v1\rest\Topic;
+
+use Yii;
+use yii\base\InvalidConfigException;
+use yii\base\Model;
+use yii\web\ForbiddenHttpException;
+use yii\rest\ActiveController;
+use yii\rest\Action;
+use common\models\Travel;
+
+class UpdateAction extends Action {
+
+    /**
+     * @var string the scenario to be assigned to the model before it is validated and updated.
+     */
+    public $scenario = Model::SCENARIO_DEFAULT;
+
+    /**
+     * Updates an existing model.
+     * @param string $id the primary key of the model.
+     * @return \yii\db\ActiveRecordInterface the model being updated
+     * @throws Exception if there is any error when updating the model
+     */
+    public function run($id) {
+        /* @var $model ActiveRecord */
+        $model = $this->findModel($id);
+
+        $model->scenario = $this->scenario;
+
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $params = Yii::$app->getRequest()->getBodyParams();
+            $model->load($params, '');
+
+            if (!$model->save()) {
+                throw new Exception('Transaction failed: Group', $model->getErrors());
+            } else {
+                $model->manageTopics($params["topics"]);
+            }
+
+            $transaction->commit();
+        } catch (Exception $ex) {
+            $transaction->rollback();
+            throw $ex;
+        }
+
+        return $model;
     }
 
 }
