@@ -39,7 +39,15 @@
     <div class="row form-group">
         <div class="col-md-6">
             <label for="date">Data sortida</label>
-            <input type="text" class="form-control" id="date" placeholder="Data sortida">
+            <input
+                    type="text"
+                    class="form-control"
+                    id="date"
+                    is-open="opened.start"
+                    datepicker-options="dateOptions"
+                    datepicker-popup="{{format}}"
+                    ng-click="openDatepicker($event, 'start')"
+                    placeholder="Data sortida">
         </div>
     </div>
 

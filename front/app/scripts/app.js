@@ -41,7 +41,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'restangular'
+    'restangular',
+    'ui.bootstrap.tpls',
+    'ui.bootstrap.datepicker'
   ])
   .filter('size',function(){ return _.size; })
   .constant('userId',QueryString.userid || 1)
