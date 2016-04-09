@@ -90,6 +90,9 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
     ];
 
     $scope.addTema = function() {
+        if($scope.temes.newtema == ""){
+            return false;
+        }
       $scope.temes.defaults.push({text:$scope.temes.newtema, done:false});
       $scope.temes.newtema  = '';
     };
