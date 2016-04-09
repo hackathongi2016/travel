@@ -225,6 +225,7 @@ use yii\web\ForbiddenHttpException;
 use yii\rest\ActiveController;
 use yii\rest\Action;
 use common\models\Topic;
+use common\models\User;
 use common\models\UserTravel;
 
 class Join extends Action {
@@ -251,7 +252,9 @@ class Join extends Action {
 
         $userTravel->save();
 
-        return $userTravel;
+        $user = User::find()->where(['usr_id' => $usr_id])->one();
+
+        return $user;
     }
 
 }
