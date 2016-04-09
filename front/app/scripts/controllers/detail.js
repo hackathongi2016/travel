@@ -11,6 +11,9 @@ angular.module('trabelApp')
   .controller('DetailCtrl', function (Notifications, userId, Restangular, $routeParams, $scope) {
 
     var me = this;
+
+    $scope.users = [];
+
     var dateFields = ["tra_date", "tra_planning_limit"];
     var fieldsToDate = function (model) {
       return _.transform(model, function (model, v, k) {
@@ -57,16 +60,28 @@ angular.module('trabelApp')
     //Restangular.one('travels',$routeParams.travelId).get()();
 
     $scope.join = function () {
-      
+      // travels/travel_id/user_id/
+      Restangular.one('travels/'+travel.tra_id+'/'+userId)
+        .post()
+        .then(function(user){
+          $scope.users.push(user);
+        }, function (error) {
+          Notifications.error("Error de connexió");
+        });
     };
 
     $scope.leave = function () {
-
+      Restangular.one('travels/'+travel.tra_id+'/'+userId)
+        .remove()
+        .then(function(user){
+          _.pull($scope.users,user);
+        }, function (error) {
+          Notifications.error("Error de connexió");
+        });
     };
 
-    var userIds = _.map(users, "usr_id");
     $scope.userIsTraveler = function () {
-      return _.includes(userIds, userId);
+      return _.includes(_.map($scope.users, "usr_id"), +userId);
     };
 
     $scope.editMode = false;
@@ -88,11 +103,12 @@ angular.module('trabelApp')
 
     $scope.save = function () {
       Restangular.restangularizeElement(null,
-        datesToString(_.omit($scope.travel.plain(),["topics","users"])),
+        datesToString(_.omit($scope.travel.plain(), ["topics", "users"])),
           'travels/' + $scope.travel.tra_id)
         .put()
         .then(function (data) {
           me.backupTravel = $scope.travel;
+          $scope.editMode = false;
         }, function (error) {
           Notifications.error("Error de connexió");
           // En cas d'error tirem enrere els canvis
@@ -101,33 +117,8 @@ angular.module('trabelApp')
     };
 
     $scope.delete = function () {
-      alert("TODO");
+      $scope.travel.delete().then(function () {
+        // $routeProvider.
+      })
     };
-
-    var users = $scope.users = [
-      {
-        usr_id           : 1,
-        usr_name         : "Pepito",
-        usr_surname      : "Grillo",
-        usr_nickname     : "",
-        usr_mail         : "",
-        usr_password     : "",
-        usr_birthday     : "",
-        usr_gender       : "",
-        usr_register_date: "",
-        usr_avatar_url   : ""
-      }
-    ];
-
-    $scope.details = [];
-    $scope.marker = [];
-
-    this.curDate = new Date();
-
-    $scope.temes = {};
-    $scope.temes.newtema = '';
-    $scope.temes.defaults = [
-      {text: 'Allotjament', done: true},
-      {text: 'Desplaçament', done: false}
-    ];
   });
