@@ -1,9 +1,17 @@
-<div class="origen">Origen</div>
+Estem al detall
+<span ng-bind="origin" class="origen">Origen</span>
 -
-<div class="destino">Destí</div>
+<span ng-bind="destination" class="destino">Destí</span>
 
 <button>Editar</button>
 <button>Unir-se</button>
 <br>
 
-<div class="description">Descripció</div>
+<div class="jumbotron">
+  <h3>Topics</h3>
+  <ul>
+    <li ng-repeat="topic in topics">
+      <a href="">{{topic.name}} : {{topic.proposals | size}}</a>
+    </li>
+  </ul>
+</div>
