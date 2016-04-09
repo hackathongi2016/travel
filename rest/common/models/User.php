@@ -10,4 +10,17 @@ use \common\models\base\User as BaseUser;
  */
 class User extends BaseUser
 {
+    public function extraFields() {
+        $fields = parent::extraFields();
+        $fields[] = 'travels';
+        return $fields;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTravels()
+    {
+        return $this->hasMany(\common\models\Travel::className(), ['tra_id' => 'ust_tra_id'])->via('userTravels');
+    }
 }
