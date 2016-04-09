@@ -2,15 +2,15 @@
 
 <div class="input-group">
 
-  <label>Data inici: <input ng-model="travel.startDate" type="date" class="form-control" placeholder="Recipient's username" id="startDate" ng-readonly="!editMode"></input></label>
+  <label>Data inici: <input ng-model="travel.tra_date" type="date" class="form-control" placeholder="Recipient's username" id="startDate" ng-readonly="!editMode"></input></label>
 
-  <label>Data fi: <input ng-model="travel.endDate" type="date" class="form-control" placeholder="Recipient's username" ng-readonly="!editMode"></input></label>
+  <label>Durada: <input ng-model="travel.tra_num_days" type="number" class="form-control" placeholder="Recipient's username" ng-readonly="!editMode"></input></label>
   <br/>
   <label>Descripció:
-    <textarea class="form-control" ng-readonly="!editMode" class="">{{description}}</textarea>
+    <textarea ng-model="tra_description" class="form-control" ng-readonly="!editMode" class="">{{description}}</textarea>
   </label>
   <br/>
-  <label>Data tancament: <input ng-model="travel.endDate" type="date" class="form-control" placeholder="Recipient's username" ng-readonly="!editMode"></input></label>
+  <label>Data tancament: <input ng-model="travel.tra_planning_limit" type="date" class="form-control" placeholder="Recipient's username" ng-readonly="!editMode"></input></label>
   <br/>
   <label>Mínim participants:
     <input type="number" ng-readonly="!editMode" class="form-control" ng-model="travel.tra_persons_min"></input>
@@ -19,7 +19,7 @@
     <input type="number" ng-readonly="!editMode" class="form-control" ng-model="travel.tra_persons_max"></input>
   </label>
   <br/>
-  <label>Pressupost mínim: <input class="form-control" ng-readonly="!editMode" ng-model="travel.tra_budget_max" type="number"></label></label>
+  <label>Pressupost mínim: <input class="form-control" ng-readonly="!editMode" ng-model="travel.tra_budget_min" type="number"></label></label>
   <label>Pressupost màxim: <input class="form-control" ng-readonly="!editMode" ng-model="travel.tra_budget_max" type="number"></label></label>
 
 </div>

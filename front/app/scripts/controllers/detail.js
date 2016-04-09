@@ -8,7 +8,7 @@
  * Controller of the trabelApp
  */
 angular.module('trabelApp')
-  .controller('DetailCtrl', function ($routeParams, $scope) {
+  .controller('DetailCtrl', function (userId, $routeParams, $scope) {
 
     /*
 
@@ -52,8 +52,8 @@ angular.module('trabelApp')
       tra_num_days: 3,
       tra_budget_min: 500,
       tra_budget_max: 1500,
-      tra_date: null,
-      tra_planning_limit: null,
+      tra_date: moment("2016-08-08").toDate(),
+      tra_planning_limit: moment("2016-06-08").toDate(),
       tra_persons_min: 0,
       tra_persons_max: 1,
       tra_description: null,
