@@ -7,10 +7,10 @@
  * # CreateCtrl
  * Controller of the trabelApp
  */
-angular.module('trabelApp')
+angular.module('trabelApp',['restangular'])
   .controller('CreateCtrl', function () {
 
-    
+
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

@@ -26,17 +26,12 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .when('/create', {
+      .when('/travels/new', {
         templateUrl: 'views/create.html',
         controller: 'CreateCtrl',
         controllerAs: 'create'
       })
-      .when('/detail', {
+      .when('/travels/:travel', {
         templateUrl: 'views/detail.html',
         controller: 'DetailCtrl',
         controllerAs: 'detail'
