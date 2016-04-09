@@ -44,10 +44,7 @@ angular
       'ngTouch',
       'restangular',
       'uiGmapgoogle-maps',
-      'ngAutocomplete',
-      'ui.bootstrap.tpls',
-      'ui.bootstrap.datepicker'
-
+      'ngAutocomplete'
   ])
   .filter('size',function(){ return _.size; })
   .constant('userId',QueryString.userid || 1)
