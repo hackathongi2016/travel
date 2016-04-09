@@ -102,8 +102,6 @@ angular
     }
 
     $rootScope.userId = userId;
-
-    console.log("La id d'usuari és " + userId);
   });
 
   // Wtf men!! ^^
