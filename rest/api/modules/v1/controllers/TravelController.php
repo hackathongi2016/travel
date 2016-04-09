@@ -140,12 +140,6 @@ class UpdateAction extends Action {
         /* @var $model ActiveRecord */
         $model = $this->findModel($id);
 
-        $oldGroup = clone $model;
-
-        if ($this->checkAccess) {
-            call_user_func($this->checkAccess, $this->id, $model);
-        }
-
         $model->scenario = $this->scenario;
 
         $transaction = Yii::$app->db->beginTransaction();
@@ -153,26 +147,10 @@ class UpdateAction extends Action {
             $params = Yii::$app->getRequest()->getBodyParams();
             $model->load($params, '');
 
-            $highlight = $model->highlight ? $model->highlight : 0;
-            $position = $model->position;
-            $lastOpened = $model->last_opened;
-            unset($model->highlight);
-            unset($model->position);
-            unset($model->last_opened);
-
             if (!$model->save()) {
                 throw new Exception('Transaction failed: Group', $model->getErrors());
             } else {
-                // Group Lessons
-                $model->manageGroupLessons($params["groupLessons"], Yii::$app->user->getId(), $oldGroup);
-
-                // Update User Group (highlight & position)                
-                UserGroup::createOrupdate(Yii::$app->user->getId(), $id, $highlight, $lastOpened, $position);
-
-                // Manage Files
-                if (isset($params["files"])) {
-                    File::manageFiles($model, $params["files"]);
-                }
+                $model->manageTopics($params["topics"]);
             }
 
             $transaction->commit();
@@ -180,9 +158,6 @@ class UpdateAction extends Action {
             $transaction->rollback();
             throw $ex;
         }
-
-        $model->highlight = $highlight;
-        $model->position = $position;
 
         return $model;
     }
