@@ -76,10 +76,8 @@ return [
                     'class' => 'yii\rest\UrlRule',
                     'controller' =>
                     ['v1/travel', 'v1/topic', 'v1/topic-proposal'],
-                    'extraPatterns' => [
-                        'GET custom' => 'custom',
-                    ],
                 ], // DEFAULT MODELS
+                'GET v1/travels/<id:\d+>/topics' => 'v1/topic/travel-topics',
             ],
         ],
 
