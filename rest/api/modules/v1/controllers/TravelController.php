@@ -57,14 +57,14 @@ class TravelController extends ActiveController
                 'checkAccess' => [$this, 'checkAccess'],
             ],
             'create' => [
-                'class' => 'yii\rest\CreateAction',
+                'class' => 'api\modules\v1\rest\Travel\CreateAction',
                 'modelClass' => $this->modelClass,
                 'checkAccess' => [$this, 'checkAccess'],
                 'scenario' => $this->createScenario,
             ],
             'update' => [
-                'class' => 'yii\rest\UpdateAction',
-                'class' => 'api\modules\v1\rest\Topic\UpdateAction',
+                'class' => 'api\modules\v1\rest\Travel\UpdateAction',
+                'modelClass' => $this->modelClass,
                 'checkAccess' => [$this, 'checkAccess'],
                 'scenario' => $this->updateScenario,
             ],
@@ -82,13 +82,6 @@ class TravelController extends ActiveController
             'options' => [
                 'class' => 'yii\rest\OptionsAction',
             ],
-        ];
-    }
-
-    public function behaviors()
-    {
-        return [
-
         ];
     }
 
@@ -113,7 +106,7 @@ class TravelController extends ActiveController
     }
 }
 
-namespace api\modules\v1\rest\Topic;
+namespace api\modules\v1\rest\Travel;
 
 use Yii;
 use yii\base\InvalidConfigException;
@@ -151,6 +144,58 @@ class UpdateAction extends Action {
                 throw new Exception('Transaction failed: Group', $model->getErrors());
             } else {
                 $model->manageTopics($params["topics"]);
+            }
+
+            $transaction->commit();
+        } catch (Exception $ex) {
+            $transaction->rollback();
+            throw $ex;
+        }
+
+        return $model;
+    }
+
+}
+
+namespace api\modules\v1\rest\Travel;
+
+use Yii;
+use yii\base\InvalidConfigException;
+use yii\base\Model;
+use yii\web\ForbiddenHttpException;
+use yii\rest\ActiveController;
+use yii\rest\Action;
+use common\models\Travel;
+
+class CreateAction extends Action {
+
+    /**
+     * @var string the scenario to be assigned to the model before it is validated and updated.
+     */
+    public $scenario = Model::SCENARIO_DEFAULT;
+
+    /**
+     * Updates an existing model.
+     * @param string $id the primary key of the model.
+     * @return \yii\db\ActiveRecordInterface the model being updated
+     * @throws Exception if there is any error when updating the model
+     */
+    public function run() {
+        /* @var $model ActiveRecord */
+        $model = new Travel();
+        $model->scenario = $this->scenario;
+
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $params = Yii::$app->getRequest()->getBodyParams();
+            $model->load($params, '');
+
+            if (!$model->save()) {
+                throw new Exception('Transaction failed: Group', $model->getErrors());
+            } else {
+                isset($params["topics"]){
+                    $model->manageTopics($params["topics"]);
+                }
             }
 
             $transaction->commit();

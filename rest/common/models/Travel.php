@@ -25,10 +25,10 @@ class Travel extends BaseTravel
             $topic = new \common\models\Topic();
 
             $topic->top_tra_id = $this->tra_id;
-            $topic->top_name = $topicData["name"];
+            $topic->top_name = $topicData["text"];
 
             if (!$topic->save()) {
-                throw new Exception('Transaction failed: GroupLesson', $topic->getErrors());
+            	var_dump($topic->getErrors());
             }
         }
     }
