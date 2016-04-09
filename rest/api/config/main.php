@@ -49,7 +49,7 @@ return [
             'on beforeSend' => function ($event) {
 
                 $http_origin = $_SERVER['SERVER_NAME'];
-                header("Access-Control-Allow-Origin: " + "http://" . $http_origin);
+                header("Access-Control-Allow-Origin: *");
                 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
                 header("Access-Control-Allow-Headers: Authorization, Content-Type");
                 header("Access-Control-Allow-Credentials: true");
