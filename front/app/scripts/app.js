@@ -71,7 +71,7 @@ angular
 
     console.log("app.js loaded");
 
-    //RestangularProvider.setBaseUrl('http://www.google.com');
+    RestangularProvider.setBaseUrl('v1/travels');
     RestangularProvider.setRequestSuffix('.json');
 
     $locationProvider.html5Mode({
