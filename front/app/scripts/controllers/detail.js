@@ -45,11 +45,10 @@ angular.module('trabelApp')
 
     //Restangular.one('travels',$routeParams.travelId).get()();
 
-
+    $scope.origin = "Girona";
     $scope.destination = "Barcelona";
     console.log($routeParams.travelId);
 
-    $scope.origin = "Girona";
     $scope.topics = [
       {
         id       : 1,
@@ -57,6 +56,33 @@ angular.module('trabelApp')
         proposals: [
           {
             id         : 1,
+            title      : "Proposta tal",
+            description: "Jo proposo anar al hotel grand marina",
+            top_id     : 1,
+            usr_id     : 1
+          },
+          {
+            id         : 2,
+            title      : "Proposta tal",
+            description: "Jo proposo anar al hotel grand marina",
+            top_id     : 1,
+            usr_id     : 1
+          }
+        ]
+      },
+      {
+        id       : 2,
+        name     : "Transport",
+        proposals: [
+          {
+            id         : 3,
+            title      : "Proposta tal",
+            description: "Jo proposo anar al hotel grand marina",
+            top_id     : 1,
+            usr_id     : 1
+          },
+          {
+            id         : 4,
             title      : "Proposta tal",
             description: "Jo proposo anar al hotel grand marina",
             top_id     : 1,
