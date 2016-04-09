@@ -63,7 +63,7 @@ return [
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => ['v1/travel', 'v1/tropic', 'v1/tropic-proposal']], // DEFAULT MODELS
+                ['class' => 'yii\rest\UrlRule', 'controller' => ['v1/travel', 'v1/topic', 'v1/topic-proposal']], // DEFAULT MODELS
             ],
         ],
 
