@@ -75,7 +75,7 @@ return [
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' =>
-                    ['v1/travel', 'v1/topic', 'v1/topic-proposal'],
+                    ['v1/travel', 'v1/topic', 'v1/topic-proposal', 'v1/user'],
                 ], // DEFAULT MODELS
                 'OPTIONS v1/<controller:\w+>' => 'v1/travel/preflight',
                 'OPTIONS v1/<controller:\w+>/<id:\d+>' => 'v1/travel/preflight',
