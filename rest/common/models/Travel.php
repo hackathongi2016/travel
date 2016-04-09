@@ -22,7 +22,7 @@ class Travel extends BaseTravel
      */
     public function getUsers()
     {
-        return $this->hasMany(\common\models\User::className(), ['id' => 'usr_id'])->via('userTravels');
+        return $this->hasMany(\common\models\User::className(), ['id' => 'ust_usr_id'])->via('userTravels');
     }
 
 }
