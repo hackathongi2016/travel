@@ -8,7 +8,7 @@
  * Controller of the trabelApp
  */
 angular.module('trabelApp')
-  .controller('DetailCtrl', function (userId, $routeParams, $scope) {
+  .controller('DetailCtrl', function (userId, Restangular, $routeParams, $scope) {
 
     /*
 
@@ -46,7 +46,7 @@ angular.module('trabelApp')
     console.log($routeParams.travelId);
 
     //Restangular.one('travels',$routeParams.travelId).get()();
-    $scope.travel = {
+    var travel = $scope.travel = {
       tra_origin: "Barcelona",
       tra_destination: "Berlin",
       tra_num_days: 3,
@@ -57,14 +57,16 @@ angular.module('trabelApp')
       tra_persons_min: 0,
       tra_persons_max: 1,
       tra_description: null,
-      tra_usr_id: userId
+      tra_usr_id: 1
     };
+
+    $scope.userIsAdmin = userId == travel.tra_usr_id;
     var me = this;
 
     $scope.editMode = false;
     $scope.toggleEditMode = function () {
       if (!$scope.editMode) {
-        $('#startDate').focus().select();
+        $('#tra_date').focus().select();
         me.backupTravel = angular.copy($scope.travel);
       }
       else {
