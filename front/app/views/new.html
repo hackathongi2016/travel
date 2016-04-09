@@ -15,11 +15,11 @@
         </div>
     </div>
 
-    <!-- PEOPLE-->
+    <!-- DIES -->
     <div class="row form-group">
-        <div class="col-md-12">
-            <label for="people">Persones</label>
-            <input type="text" class="form-control" id="people" placeholder="Persones">
+        <div class="col-md-6">
+            <label for="days">Dies</label>
+            <input type="text" class="form-control" id="days" placeholder="Dies">
         </div>
     </div>
 
@@ -38,16 +38,32 @@
     <!-- DATE-->
     <div class="row form-group">
         <div class="col-md-6">
-            <label for="date">Data sortida</label>
+            <label for="date-limit">Data sortida</label>
             <input
                     type="text"
                     class="form-control"
-                    id="date"
-                    is-open="opened.start"
-                    datepicker-options="dateOptions"
-                    datepicker-popup="{{format}}"
-                    ng-click="openDatepicker($event, 'start')"
+                    id="date-limit"
                     placeholder="Data sortida">
+        </div>
+        <div class="col-md-6">
+            <label for="date-limit">Data limit</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="date-limit"
+                    placeholder="Data limit">
+        </div>
+    </div>
+
+    <!-- PEOPLE-->
+    <div class="row form-group">
+        <div class="col-md-6">
+            <label for="people">Persones min</label>
+            <input type="text" class="form-control" id="people" placeholder="Persones min">
+        </div>
+        <div class="col-md-6">
+            <label for="people">Persones max</label>
+            <input type="text" class="form-control" id="people" placeholder="Persones max">
         </div>
     </div>
 
@@ -62,7 +78,7 @@
     <!-- SUBMIT -->
     <div class="row form-group">
         <div class="col-md-12">
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
 
