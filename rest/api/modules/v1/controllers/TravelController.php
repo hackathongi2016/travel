@@ -251,7 +251,9 @@ class Join extends Action {
 
         $userTravel->save();
 
-        return $userTravel;
+        $user = User::find()->where(['usr_id' => $usr_id])->one();
+
+        return $user;
     }
 
 }
