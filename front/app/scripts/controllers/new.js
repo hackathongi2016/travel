@@ -8,7 +8,12 @@
  * Controller of the trabelApp
  */
 
-angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular, uiGmapGoogleMapApi, userId) {
+angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, Restangular, uiGmapGoogleMapApi, userId) {
+
+    // No userid no party
+    if(!userId){
+        window.location = "http://auth.trabel.me/login";
+    }
 
     this.awesomeThings = [
       'HTML5 Boilerplate',
@@ -31,6 +36,7 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular,
         tra_description: null,
         tra_usr_id: userId
     };
+    Restangular.restangularizeElement(null, this.travel, 'travels');
     var me = this.travel;
 
     $scope.details = [];
@@ -82,7 +88,28 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular,
     uiGmapGoogleMapApi.then(function (maps) {
       $scope.map = {center: {latitude: 39.8433, longitude: -105.1190}, zoom: 10};
     })
-
     this.curDate = new Date();
+
+
+    $scope.temes = new Object();
+    $scope.temes.newtema = '';
+    $scope.temes.defaults = [
+      {text:'Allotjament', done:true},
+      {text:'Desplaçament', done:false}
+    ];
+
+    $scope.addTema = function() {
+      $scope.temes.defaults.push({text:$scope.temes.newtema, done:false});
+      $scope.temes.newtema  = '';
+    };
+
+
+    $scope.save = function (){
+        $location.path('/travels/1');
+        return false;
+        this.travel.post(null, null, {}).then(function (travelData) {
+            $location.path('/travels/' + travelData.id);
+        });
+    }
 
 });

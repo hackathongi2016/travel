@@ -47,6 +47,14 @@ return [
             'charset' => 'UTF-8',
             'class' => 'yii\web\Response',
             'on beforeSend' => function ($event) {
+
+                $http_origin = $_SERVER['SERVER_NAME'];
+                header("Access-Control-Allow-Origin: " + "http://" . $http_origin);
+                header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+                header("Access-Control-Allow-Headers: Authorization, Content-Type");
+                header("Access-Control-Allow-Credentials: true");
+                header("Access-Control-Max-Age: 86400");
+
                 $response = $event->sender;
 
                 if ($response->data !== null){ // && Yii::$app->request->get('suppress_response_code')) {
@@ -58,16 +66,18 @@ return [
                 }
             },
         ],
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
                 [
-                  'class' => 'yii\rest\UrlRule',
-                  'controller' =>
-                    ['v1/travel', 'v1/topic', 'v1/topic-proposal']
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' =>
+                    ['v1/travel', 'v1/topic', 'v1/topic-proposal'],
                 ], // DEFAULT MODELS
+                'GET v1/travels/<id:\d+>/topics' => 'v1/topic/travel-topics',
             ],
         ],
 

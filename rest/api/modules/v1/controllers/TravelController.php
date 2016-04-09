@@ -68,5 +68,4 @@ class TravelController extends ActiveController
     {
     }
 
-
 }
