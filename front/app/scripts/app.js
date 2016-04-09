@@ -10,14 +10,15 @@
  */
 angular
   .module('trabelApp', [
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
+      'ngAnimate',
+      'ngAria',
+      'ngCookies',
+      'ngMessages',
+      'ngResource',
+      'ngRoute',
+      'ngSanitize',
+      'ngTouch',
+      'restangular'
   ])
   .config(function ($routeProvider,$locationProvider) {
     $routeProvider
@@ -27,9 +28,9 @@ angular
         controllerAs: 'main'
       })
       .when('/travels/new', {
-        templateUrl: 'views/create.html',
-        controller: 'CreateCtrl',
-        controllerAs: 'create'
+        templateUrl: 'views/new.html',
+        controller: 'NewCtrl',
+        controllerAs: 'new'
       })
       .when('/travels/:travel', {
         templateUrl: 'views/detail.html',
@@ -45,3 +46,4 @@ angular
       requireBase: false
     });
   });
+

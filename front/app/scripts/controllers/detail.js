@@ -9,6 +9,8 @@
  */
 angular.module('trabelApp')
   .controller('DetailCtrl', function () {
+      console.log("Detall");
+
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
