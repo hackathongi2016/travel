@@ -77,6 +77,7 @@ return [
                     'controller' =>
                     ['v1/travel', 'v1/topic', 'v1/topic-proposal'],
                 ], // DEFAULT MODELS
+                'OPTIONS v1/<controller:\w+>' => 'v1/travel/preflight',
                 'GET v1/travels/<id:\d+>/topics' => 'v1/topic/travel-topics',
             ],
         ],
