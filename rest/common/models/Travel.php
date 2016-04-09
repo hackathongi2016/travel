@@ -24,11 +24,14 @@ class Travel extends BaseTravel
             // Create Case
             $topic = new \common\models\Topic();
 
-            $topic->top_tra_id = $this->tra_id;
-            $topic->top_name = $topicData["text"];
+            if ($topicData["text"] != "")
+            {
+                $topic->top_tra_id = $this->tra_id;
+                $topic->top_name = $topicData["text"];
 
-            if (!$topic->save()) {
-            	var_dump($topic->getErrors());
+                if (!$topic->save()) {
+                	var_dump($topic->getErrors());
+                }
             }
         }
     }
