@@ -32,13 +32,13 @@
   <div class="row form-group">
     <div class="col-sm-6">
       <label for="tra_persons_min">Mínim participants:</label>
-      <input id="tra_persons_min" type="number" ng-readonly="!editMode" class="form-control"
+      <input id="tra_persons_min" min="2" type="number" ng-readonly="!editMode" class="form-control"
              ng-model="travel.tra_persons_min"/>
 
     </div>
     <div class="col-sm-6">
       <label for="tra_persons_max">Màxim participants:</label>
-      <input id="tra_persons_max" type="number" ng-readonly="!editMode" class="form-control"
+      <input id="tra_persons_max" min="2" type="number" ng-readonly="!editMode" class="form-control"
              ng-model="travel.tra_persons_max"/>
 
     </div>
@@ -57,7 +57,7 @@
     </div>
   </div>
 
-  <div ng-if="userIsAdmin" class="row form-group">
+  <div ng-show="userIsAdmin" class="row form-group">
     <div class="col-sm-12">
       <button ng-show="!editMode" type="button" class="btn" ng-click="toggleEditMode()">Editar</button>
 
@@ -85,15 +85,15 @@
       {{user.usr_name}}
     </a>
     <br/>
-    <button ng-show="!userIsAdmin && !userIsTraveler()" type="button" class="btn btn-primary">Unir-se</button>
-    <button ng-show="!userIsAdmin && userIsTraveler()" type="button" class="btn btn-danger">Abandonar</button>
+    <button ng-show="!userIsAdmin && !userIsTraveler()" type="button" class="btn btn-primary" ng-click="join()">Unir-se</button>
+    <button ng-show="!userIsAdmin && userIsTraveler()" type="button" class="btn btn-danger" ng-click="leave()">Abandonar</button>
   </div>
 
   <div class="list-group col col-sm-6">
     <h4>Temes</h4>
-    <a ng-repeat="topic in topics" href="topics/{{topic.id}}?userid={{userId}}" class="list-group-item">
-      {{topic.name}}
-      <span class="badge">Propostes:{{topic.proposals | size}}</span>
+    <a ng-repeat="topic in topics" href="http://discuss.trabel.me/topics/{{topic.top_id}}?userid={{userId}}" class="list-group-item">
+      {{topic.top_name}}
+      <span class="badge">Propostes:{{topic.topicProposals | size}}</span>
     </a>
   </div>
 </div>
