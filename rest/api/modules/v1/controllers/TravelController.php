@@ -143,7 +143,9 @@ class UpdateAction extends Action {
             if (!$model->save()) {
                 throw new Exception('Transaction failed: Group', $model->getErrors());
             } else {
-                $model->manageTopics($params["topics"]);
+                if(isset($params["topics"])){
+                    $model->manageTopics($params["topics"]);
+                }
             }
 
             $transaction->commit();
