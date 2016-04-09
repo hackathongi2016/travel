@@ -8,7 +8,12 @@
  * Controller of the trabelApp
  */
 
-angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular, uiGmapGoogleMapApi, userId) {
+angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, Restangular, uiGmapGoogleMapApi, userId) {
+
+    // No userid no party
+    if(!userId){
+        window.location = "http://auth.trabel.me/login";
+    }
 
     this.awesomeThings = [
       'HTML5 Boilerplate',
@@ -31,6 +36,9 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular,
         tra_description: null,
         tra_usr_id: userId
     };
+
+    Restangular.restangularizeElement(null, this.travel, 'travels');
+
     var me = this.travel;
 
     $scope.details = [];
@@ -85,4 +93,11 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular,
 
     this.curDate = new Date();
 
+    $scope.save = function (){
+        $location.path('/travels/1');
+        return false;
+        this.travel.post(null, null, {}).then(function (travelData) {
+            $location.path('/travels/' + travelData.id);
+        });
+    }
 });
