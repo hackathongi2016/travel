@@ -96,7 +96,7 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
 
     $scope.save = function (){
 
-        console.log(me);
+       console.log(me);
        me.post(null, null, {}).then(function (travelData) {
             $location.path('/travels/' + travelData.id);
         });
