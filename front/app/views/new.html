@@ -1,90 +1,98 @@
-<form>
-    <!-- ORIGIN-->
-    <div class="row form-group">
-        <div class="col-md-12">
-            <label for="origin">Origen</label>
-            <input type="text" class="form-control" id="origin" placeholder="Origen">
-        </div>
-    </div>
+<div class="container-fluid">
+    <h1>Crear Viatge</h1>
 
-    <!-- DESTINATION-->
-    <div class="row form-group">
-        <div class="col-md-12">
-            <label for="destination">Destinació</label>
-            <input type="text" class="form-control" id="destination" placeholder="Destinació" ng-autocomplete ng-model="autocomplete" options="options" details="details">
+    <form >
+        <h3>Datus generals</h3>
+
+        <!-- ORIGIN-->
+        <div class="row form-group">
+            <div class="col-md-12">
+                <label for="origin">Origen</label>
+                <input type="text" class="form-control" id="origin" placeholder="Origen">
+            </div>
+        </div>
+
+        <!-- DESTINATION-->
+        <div class="row form-group">
+            <div class="col-md-12">
+                <label for="destination">Destinació</label>
+                <input type="text" class="form-control" id="destination" placeholder="Destinació" ng-autocomplete ng-model="autocomplete" options="options" details="details">
           <pre>
             {{details.geometry.location}}
           </pre>
-          <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+                <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
+            </div>
         </div>
-    </div>
 
-    <!-- DIES -->
-    <div class="row form-group">
-        <div class="col-md-6">
-            <label for="days">Dies</label>
-            <input type="text" class="form-control" id="days" placeholder="Dies">
+        <!-- DIES -->
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label for="days">Dies</label>
+                <input type="text" class="form-control" id="days" placeholder="Dies">
+            </div>
         </div>
-    </div>
 
-    <!-- PREU-->
-    <div class="row form-group">
-        <div class="col-md-6">
-            <label for="price_max">Preu max</label>
-            <input type="text" class="form-control" id="price_max" placeholder="Preu max">
+        <!-- PREU-->
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label for="price_max">Preu max</label>
+                <input type="text" class="form-control" id="price_max" placeholder="Preu max">
+            </div>
+            <div class="col-md-6">
+                <label for="price_min">Preu min</label>
+                <input type="text" class="form-control" id="price_min" placeholder="Preu min">
+            </div>
         </div>
-        <div class="col-md-6">
-            <label for="price_min">Preu min</label>
-            <input type="text" class="form-control" id="price_min" placeholder="Preu min">
-        </div>
-    </div>
 
-    <!-- DATE-->
-    <div class="row form-group">
-        <div class="col-md-6">
-            <label for="date-limit">Data sortida</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    id="date-limit"
-                    placeholder="Data sortida">
+        <!-- DATE-->
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label for="date-limit">Data sortida</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="date-limit"
+                        placeholder="Data sortida">
+            </div>
+            <div class="col-md-6">
+                <label for="date-limit">Data limit</label>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="date-limit"
+                        placeholder="Data limit">
+            </div>
         </div>
-        <div class="col-md-6">
-            <label for="date-limit">Data limit</label>
-            <input
-                    type="text"
-                    class="form-control"
-                    id="date-limit"
-                    placeholder="Data limit">
-        </div>
-    </div>
 
-    <!-- PEOPLE-->
-    <div class="row form-group">
-        <div class="col-md-6">
-            <label for="people">Persones min</label>
-            <input type="text" class="form-control" id="people" placeholder="Persones min">
+        <!-- PEOPLE-->
+        <div class="row form-group">
+            <div class="col-md-6">
+                <label for="people">Persones min</label>
+                <input type="text" class="form-control" id="people" placeholder="Persones min">
+            </div>
+            <div class="col-md-6">
+                <label for="people">Persones max</label>
+                <input type="text" class="form-control" id="people" placeholder="Persones max">
+            </div>
         </div>
-        <div class="col-md-6">
-            <label for="people">Persones max</label>
-            <input type="text" class="form-control" id="people" placeholder="Persones max">
+
+        <!-- DESCRIPTION-->
+        <div class="row form-group">
+            <div class="col-md-12">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
+            </div>
         </div>
-    </div>
 
-    <!-- DESCRIPTION-->
-    <div class="row form-group">
-        <div class="col-md-12">
-            <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
+        <h3>Temes</h3>
+
+        <!-- SUBMIT -->
+        <div class="row form-group">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-primary" ng-click="save">Crear</button>
+            </div>
         </div>
-    </div>
-
-    <!-- SUBMIT -->
-    <div class="row form-group">
-        <div class="col-md-12">
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </div>
+    </form>
+</div>
 
 
-</form>
