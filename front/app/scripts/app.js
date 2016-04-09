@@ -44,7 +44,9 @@ angular
       'ngTouch',
       'restangular',
       'uiGmapgoogle-maps',
-      'ngAutocomplete'
+      'ngAutocomplete',
+      'pickadate'
+
   ])
   .filter('size',function(){ return _.size; })
   .constant('userId',QueryString.userid || 1)

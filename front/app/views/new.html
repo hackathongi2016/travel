@@ -48,11 +48,27 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label for="date-limit">Data sortida</label>
-                <input type="text" class="form-control" id="date-limit" ng-model="travel.tra_date" placeholder="Data sortida">
+
+                <input
+                        type="text"
+                        class="form-control"
+                        id="date-limit"
+                        ng-model="tra_date"
+                        pick-a-date="curDate"
+                        pick-a-date-options="{ format: 'dd/mm/yy', selectYears: true }"
+                        placeholder="Data sortida">
             </div>
             <div class="col-md-6">
                 <label for="date-limit">Data limit</label>
-                <input type="text" class="form-control" id="date-limit" ng-model="travel.tra_planning_limit" placeholder="Data limit">
+                <input
+                        type="text"
+                        class="form-control"
+                        id="date-limit"
+                        pick-a-date="curDate"
+                        pick-a-date-options="{ format: 'dd/mm/yy', selectYears: true }"
+                        ng-model="tra_planning_limit"
+                        placeholder="Data limit">
+
             </div>
         </div>
 
