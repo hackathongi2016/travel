@@ -118,6 +118,7 @@ use yii\base\Model;
 use yii\web\ForbiddenHttpException;
 use yii\rest\ActiveController;
 use yii\rest\Action;
+use common\models\Topic;
 
 class GetTravelTopics extends Action {
 
@@ -134,8 +135,11 @@ class GetTravelTopics extends Action {
      */
     public function run($id) {
     
-        $model = $this->findModel(1);
-        return $model;
+        $topic = Topic::find()
+            ->andWhere('top_tra_id=:top_tra_id', [':top_tra_id' => $id])
+            ->one();
+
+        return $topic;
     }
 
 }
