@@ -24,12 +24,11 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular,
 
     $scope.$watch('details', function() {
       if($scope.details.length <= 0) return false;
+      console.log($scope.details.geometry);
       $scope.map = {
         center: {
-          //latitude: ($scope.details.geometry) ? $scope.details.geometry.location.lat : $scope.details.access_points[0].location.lat,
-          //longitude: ($scope.details.geometry) ? $scope.details.geometry.location.lng : $scope.details.access_points[0].location.lng,
-          longitude: $scope.details.geometry.viewport.R.R,
-          latitude: $scope.details.geometry.viewport.R.j,
+          latitude: ($scope.details.geometry) ? $scope.details.geometry.location.lat : $scope.details.access_points[0].location.lat,
+          longitude: ($scope.details.geometry) ? $scope.details.geometry.location.lng : $scope.details.access_points[0].location.lng,
         },
         zoom: 10
       }
