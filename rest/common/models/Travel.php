@@ -13,6 +13,7 @@ class Travel extends BaseTravel
 	public function extraFields() {
         $fields = parent::extraFields();
         $fields[] = 'topics';
+        $fields[] = 'users';
         return $fields;
     }
 
@@ -29,4 +30,13 @@ class Travel extends BaseTravel
             }
         }
     }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUsers()
+    {
+        return $this->hasMany(\common\models\User::className(), ['id' => 'ust_usr_id'])->via('userTravels');
+    }
+
 }
