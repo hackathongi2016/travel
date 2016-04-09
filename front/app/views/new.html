@@ -12,19 +12,18 @@
             </div>
         </div>
 
+        <!-- DESTINATION-->
+        <div class="row form-group">
+            <div class="col-md-12">
+                <label for="destination">Destinació</label>
+                <input type="text" class="form-control" ng-model="travel.destination" id="destination" placeholder="Destinació" ng-autocomplete ng-model="autocomplete" options="options" details="details">
 
-    <!-- DESTINATION-->
-    <div class="row form-group">
-        <div class="col-md-12">
-            <label for="destination">Destinació</label>
-            <input type="text" class="form-control" ng-model="travel.destination" id="destination" placeholder="Destinació" ng-autocomplete ng-model="autocomplete" options="options" details="details">
-
-          <ui-gmap-google-map ng-if="showmap" center='map.center' zoom='map.zoom'>
-            <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-            </ui-gmap-marker>
-          </ui-gmap-google-map>
+                <ui-gmap-google-map ng-if="showmap" center='map.center' zoom='map.zoom'>
+                <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
+                </ui-gmap-google-map>
+            </div>
         </div>
-</div>
+
         <!-- DIES -->
         <div class="row form-group">
             <div class="col-md-6">
@@ -49,21 +48,11 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label for="date-limit">Data sortida</label>
-                <input
-                        type="text"
-                        class="form-control"
-                        id="date-limit"
-                        ng-model="tra_date"
-                        placeholder="Data sortida">
+                <input type="text" class="form-control" id="date-limit" ng-model="tra_date" placeholder="Data sortida">
             </div>
             <div class="col-md-6">
                 <label for="date-limit">Data limit</label>
-                <input
-                        type="text"
-                        class="form-control"
-                        id="date-limit"
-                        ng-model="tra_planning_limit"
-                        placeholder="Data limit">
+                <input type="text" class="form-control" id="date-limit" ng-model="tra_planning_limit" placeholder="Data limit">
             </div>
         </div>
 
