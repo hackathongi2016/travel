@@ -85,8 +85,8 @@
       {{user.usr_name}}
     </a>
     <br/>
-    <button ng-show="!userIsAdmin && !userIsTraveler()" type="button" class="btn btn-primary">Unir-se</button>
-    <button ng-show="!userIsAdmin && userIsTraveler()" type="button" class="btn btn-danger">Abandonar</button>
+    <button ng-show="!userIsAdmin && !userIsTraveler()" type="button" class="btn btn-primary" ng-click="join()">Unir-se</button>
+    <button ng-show="!userIsAdmin && userIsTraveler()" type="button" class="btn btn-danger" ng-click="leave()">Abandonar</button>
   </div>
 
   <div class="list-group col col-sm-6">
