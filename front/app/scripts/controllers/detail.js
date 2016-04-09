@@ -10,41 +10,16 @@
 angular.module('trabelApp')
   .controller('DetailCtrl', function (userId, Restangular, $routeParams, $scope) {
 
+    Restangular.one('travels',$routeParams.travelId).get()
+      .then(function(travel){
+        $scope.travel = travel;
+      });
+
     /*
-
-     http://localhost/viatgem-junts/rest/api/web/?r=v1/travel/view&id=2
-
-     `tra_id` bigint(20) NOT NULL,
-     `tra_origin` varchar(255) NOT NULL,
-     `tra_destination` varchar(255) NOT NULL,
-     `tra_num_days` int(11) NOT NULL,
-     `tra_budget_min` float DEFAULT NULL,
-     `tra_budget_max` float DEFAULT NULL,
-     `tra_date` date NOT NULL,
-     `tra_lat` float NOT NULL,
-     `tra_long` float NOT NULL,
-     `tra_planning_limit` date NOT NULL,
-     `tra_persons_min` int(11) DEFAULT NULL,
-     `tra_persons_max` int(11) DEFAULT NULL,
-     `tra_description` varchar(4000) NOT NULL,
-     `tra_usr_id` bigint(20) NOT NULL
-
-     CREATE TABLE IF NOT EXISTS `Topic` (
-     `top_id` bigint(20) NOT NULL,
-     `top_name` varchar(1000) NOT NULL,
-     `top_tra_id` bigint(20) NOT NULL
-     ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-     CREATE TABLE IF NOT EXISTS `TopicProposal` (
-     `pro_id` bigint(20) NOT NULL,
-     `pro_title` varchar(1000) NOT NULL,
-     `pro_description` varchar(4000) DEFAULT NULL,
-     `pro_top_id` bigint(20) NOT NULL,
-     `pro_usr_id` bigint(20) NOT NULL
-     */
-
-    console.log($routeParams.travelId);
-
+    Restangular.one('users').getList();
+    Restangular.one('topics').getList();
+    Restangular.one('proposals').getList();
+    */
     //Restangular.one('travels',$routeParams.travelId).get()();
     var travel = $scope.travel = {
       tra_origin: "Barcelona",

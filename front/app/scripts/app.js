@@ -74,8 +74,20 @@ angular
 
     console.log("app.js loaded");
 
-    RestangularProvider.setBaseUrl('http://api.trabel.me/v1/');
-    //RestangularProvider.setRequestSuffix('.json');
+    RestangularProvider.setBaseUrl('http://api-travel.trabel.me/v1');
+
+    // add a response interceptor
+    RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+      var extractedData;
+      // .. to look for getList operations
+      if ((operation === "getList" || operation === "get") && _.get(data,"success")) {
+        // .. and handle the data and meta data
+        extractedData =  _.get(data,"data");
+      } else {
+        extractedData = data;
+      }
+      return extractedData;
+    });
 
     $locationProvider.html5Mode({
       enabled: true,
