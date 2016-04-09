@@ -1,34 +1,78 @@
-<h3>Detall del viatge <span class="label label-default">{{origin}}</span> - <span class="label label-default">{{destination}}</span></h3>
+<h1>Detall del viatge</h1>
+<form>
+  <h3><span class="label label-default">{{travel.tra_origin}}</span> - <span class="label label-default">{{travel.tra_destination}}</span>
+  </h3>
 
-<div class="input-group">
+  <div class="row form-group">
 
-  <label>Data inici: <input ng-model="travel.startDate" type="date" class="form-control" placeholder="Recipient's username" id="startDate" ng-readonly="!editMode"></input></label>
+    <div class="col-sm-4">
+      <label for="tra_date">Data inici: </label>
+      <input id="tra_date" ng-model="travel.tra_date" type="date" class="form-control"
+             placeholder="Recipient's username" ng-readonly="!editMode"/>
+    </div>
+    <div class="col-sm-4">
+      <label for="tra_num_days">Durada: </label>
+      <input id="tra_num_days" ng-model="travel.tra_num_days" type="number" class="form-control"
+             placeholder="Recipient's username" ng-readonly="!editMode"/>
+    </div>
+    <div class="col-sm-4">
+      <label for="tra_planning_limit">Data tancament: </label>
+      <input id="tra_planning_limit" ng-model="travel.tra_planning_limit" type="date" class="form-control"
+             placeholder="Recipient's username" ng-readonly="!editMode"/>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-sm-12">
+      <label for="tra_description">Descripció:</label>
+      <textarea id="tra_description" ng-model="travel.tra_description" class="form-control" ng-readonly="!editMode"
+                class="">{{travel.tra_description}}</textarea>
 
-  <label>Data fi: <input ng-model="travel.endDate" type="date" class="form-control" placeholder="Recipient's username" ng-readonly="!editMode"></input></label>
-  <br/>
-  <label>Descripció:
-    <textarea class="form-control" ng-readonly="!editMode" class="">{{description}}</textarea>
-  </label>
-  <br/>
-  <label>Data tancament: <input ng-model="travel.endDate" type="date" class="form-control" placeholder="Recipient's username" ng-readonly="!editMode"></input></label>
-  <br/>
-  <label>Mínim participants:
-    <input type="number" ng-readonly="!editMode" class="form-control" ng-model="travel.tra_persons_min"></input>
-  </label>
-  <label>Màxim participants:
-    <input type="number" ng-readonly="!editMode" class="form-control" ng-model="travel.tra_persons_max"></input>
-  </label>
-  <br/>
-  <label>Pressupost mínim: <input class="form-control" ng-readonly="!editMode" ng-model="travel.tra_budget_max" type="number"></label></label>
-  <label>Pressupost màxim: <input class="form-control" ng-readonly="!editMode" ng-model="travel.tra_budget_max" type="number"></label></label>
+    </div>
+  </div>
+  <div class="row form-group">
+    <div class="col-sm-6">
+      <label for="tra_persons_min">Mínim participants:</label>
+      <input id="tra_persons_min" type="number" ng-readonly="!editMode" class="form-control"
+             ng-model="travel.tra_persons_min"/>
 
-</div>
-<button type="button" class="btn btn-default" ng-click="toggleEditMode()">Editar</button>
-<button type="button" class="btn btn-default">Unir-se</button>
+    </div>
+    <div class="col-sm-6">
+      <label for="tra_persons_max">Màxim participants:</label>
+      <input id="tra_persons_max" type="number" ng-readonly="!editMode" class="form-control"
+             ng-model="travel.tra_persons_max"/>
 
-<button ng-disabled="!editMode" type="submit" class="btn btn-default">Guardar</button>
-<button ng-disabled="!editMode" type="submit" ng-click="toggleEditMode()" class="btn btn-default">Cancel·lar</button>
+    </div>
+  </div>
 
+  <div class="row form-group">
+    <div class="col-sm-6">
+      <label for="tra_budget_min">Pressupost mínim: </label>
+      <input id="tra_budget_min" class="form-control" ng-readonly="!editMode" ng-model="travel.tra_budget_min"
+             type="number"></label>
+    </div>
+    <div class="col-sm-6">
+      <label for="tra_budget_max">Pressupost màxim: </label>
+      <input id="tra_budget_max" class="form-control" ng-readonly="!editMode" ng-model="travel.tra_budget_max"
+             type="number"></label>
+    </div>
+  </div>
+
+  <div ng-if="userIsAdmin" class="row form-group">
+    <div class="col-sm-6">
+      <button type="button" class="btn" ng-click="toggleEditMode()">Editar</button>
+      <button ng-disabled="!editMode" type="submit" ng-click="save()" class="btn btn-primary btn">
+        Guardar
+      </button>
+      <button ng-disabled="!editMode" type="submit" ng-click="toggleEditMode()" class="btn">
+        Cancel·lar
+      </button>
+    </div>
+  </div>
+</form>
+
+<hr>
+
+<button type="button" class="btn btn-lg btn-primary">Unir-se</button>
 
 <hr>
 
@@ -36,10 +80,10 @@
 
 <div class="list-group">
 
-    <a ng-repeat="topic in topics" href="topics/{topic.id}" class="list-group-item" >
-      {{topic.name}}
-      <span class="badge">Propostes:{{topic.proposals | size}}</span>
-    </a>
+  <a ng-repeat="topic in topics" href="topics/{topic.id}" class="list-group-item">
+    {{topic.name}}
+    <span class="badge">Propostes:{{topic.proposals | size}}</span>
+  </a>
 
 </div>
 

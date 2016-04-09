@@ -36,9 +36,7 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
         tra_description: null,
         tra_usr_id: userId
     };
-
     Restangular.restangularizeElement(null, this.travel, 'travels');
-
     var me = this.travel;
 
     $scope.details = [];
@@ -90,8 +88,21 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
     uiGmapGoogleMapApi.then(function (maps) {
       $scope.map = {center: {latitude: 39.8433, longitude: -105.1190}, zoom: 10};
     })
-
     this.curDate = new Date();
+
+
+    $scope.temes = new Object();
+    $scope.temes.newtema = '';
+    $scope.temes.defaults = [
+      {text:'Allotjament', done:true},
+      {text:'Desplaçament', done:false}
+    ];
+
+    $scope.addTema = function() {
+      $scope.temes.defaults.push({text:$scope.temes.newtema, done:false});
+      $scope.temes.newtema  = '';
+    };
+
 
     $scope.save = function (){
         $location.path('/travels/1');
@@ -100,4 +111,5 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
             $location.path('/travels/' + travelData.id);
         });
     }
+
 });
