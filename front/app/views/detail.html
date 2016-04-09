@@ -85,13 +85,18 @@
       {{user.usr_name}}
     </a>
     <br/>
-    <button ng-show="!userIsAdmin && !userIsTraveler()" type="button" class="btn btn-primary" ng-click="join()">Unir-se</button>
-    <button ng-show="!userIsAdmin && userIsTraveler()" type="button" class="btn btn-danger" ng-click="leave()">Abandonar</button>
+    <button ng-show="!userIsAdmin && !userIsTraveler()" type="button" class="btn btn-primary" ng-click="join()">
+      Unir-se
+    </button>
+    <button ng-show="!userIsAdmin && userIsTraveler()" type="button" class="btn btn-danger" ng-click="leave()">
+      Abandonar
+    </button>
   </div>
 
   <div class="list-group col col-sm-6">
     <h4>Temes</h4>
-    <a ng-repeat="topic in topics" href="http://discuss.trabel.me/topics/{{topic.top_id}}?userid={{userId}}" class="list-group-item">
+    <a ng-repeat="topic in topics" href="http://discuss.trabel.me/topics/{{topic.top_id}}?userid={{userId}}"
+       class="list-group-item">
       {{topic.top_name}}
       <span class="badge">Propostes:{{topic.topicProposals | size}}</span>
     </a>
