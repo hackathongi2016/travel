@@ -35,12 +35,21 @@
         <!-- PREU-->
         <div class="row form-group">
             <div class="col-md-6">
-                <label for="price_max">Preu min</label>
-                <input type="text" class="form-control" id="price_max" ng-model="new.travel.tra_budget_min"  placeholder="Preu min" required>
+              <label for="price_max">Preu min</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="price_max" ng-model="new.travel.tra_budget_min"  placeholder="Preu min" aria-describedby="basic-addon2" required>
+                <span class="input-group-addon" id="basic-addon2">€</span>
+              </div>
+
+
+
             </div>
             <div class="col-md-6">
                 <label for="price_min">Preu max</label>
-                <input type="text" class="form-control" id="price_min" ng-model="new.travel.tra_budget_max" placeholder="Preu max" required>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="price_min" ng-model="new.travel.tra_budget_max" placeholder="Preu max" aria-describedby="basic-addon3" required>
+                  <span class="input-group-addon" id="basic-addon3">€</span>
+                </div>
             </div>
         </div>
 
@@ -96,8 +105,8 @@
 
         <h3>Temes</h3>
 
-          <ul class="unstyled">
-            <li ng-repeat="tema in temes.defaults">
+          <ul class="list-group">
+            <li ng-repeat="tema in temes.defaults" class="list-group-item">
               <label class="checkbox">
 
                 <span class="done-{{tema.done}}">{{tema.text}}</span>
@@ -105,15 +114,23 @@
             </li>
           </ul>
 
-          <input type="text" ng-model="temes.newtema"  size="30"
-                 placeholder="Inserta un nou tema">
-          <button class="btn-primary" type="submit" ng-click="addTema()" >Nou tema</button>
+          <div class="input-group">
+            <div class="col-md-10">
+              <input type="text" ng-model="temes.newtema"  size="30" class="form-control" placeholder="Inserta un nou tema">
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-info" ng-click="addTema()" >Nou tema</button>
+              </div>
+         </div>
 
 
+<br><br><br>
         <!-- SUBMIT -->
-        <div class="row form-group">
+        <div class="row form-group text-center">
             <div class="col-md-12">
-                <button type="button" class="btn btn-primary" ng-click="save()">Crear</button>
+                <button type="button" class="btn btn-lg btn-primary" ng-click="save()">
+                  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Crear Viatge
+                </button>
             </div>
         </div>
     </form>

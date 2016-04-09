@@ -85,6 +85,7 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
     $scope.temes.newtema = '';
     $scope.temes.defaults = [
       {text:'Allotjament', done:true},
+      {text:'Activitats', done:true},
       {text:'Desplaçament', done:false}
     ];
 
