@@ -1,17 +1,49 @@
 <h3>Detall del viatge <span class="label label-default">{{origin}}</span> - <span class="label label-default">{{destination}}</span></h3>
-<div class="container">
-  <button type="button" class="btn btn-default">Editar</button>
-  <button type="button" class="btn btn-default">Unir-se</button>
-</div>
-<hr>
-<div class="jumbotron">
-  <h3>Topics</h3>
 
-  <div class="list-group">
-    <a ng-repeat="topic in topics" href="topics/{topic.id}" class="list-group-item active">
-      <h4 class="list-group-item-heading">{{topic.name}}</h4>
-      <p class="list-group-item-text">Propostes: {{topic.proposals | size}}</p>
+<div class="input-group">
+
+  <label>Data inici: <input ng-model="travel.startDate" type="date" class="form-control" placeholder="Recipient's username" id="startDate" ng-readonly="!editMode"></input></label>
+
+  <label>Data fi: <input ng-model="travel.endDate" type="date" class="form-control" placeholder="Recipient's username" ng-readonly="!editMode"></input></label>
+  <br/>
+  <label>Descripció:
+    <textarea class="form-control" ng-readonly="!editMode" class="">{{description}}</textarea>
+  </label>
+  <br/>
+  <label>Data tancament: <input ng-model="travel.endDate" type="date" class="form-control" placeholder="Recipient's username" ng-readonly="!editMode"></input></label>
+  <br/>
+  <label>Mínim participants:
+    <input type="number" ng-readonly="!editMode" class="form-control" ng-model="travel.tra_persons_min"></input>
+  </label>
+  <label>Màxim participants:
+    <input type="number" ng-readonly="!editMode" class="form-control" ng-model="travel.tra_persons_max"></input>
+  </label>
+  <br/>
+  <label>Pressupost mínim: <input class="form-control" ng-readonly="!editMode" ng-model="travel.tra_budget_max" type="number"></label></label>
+  <label>Pressupost màxim: <input class="form-control" ng-readonly="!editMode" ng-model="travel.tra_budget_max" type="number"></label></label>
+
+</div>
+<button type="button" class="btn btn-default" ng-click="toggleEditMode()">Editar</button>
+<button type="button" class="btn btn-default">Unir-se</button>
+
+<button ng-disabled="!editMode" type="submit" class="btn btn-default">Guardar</button>
+<button ng-disabled="!editMode" type="submit" ng-click="toggleEditMode()" class="btn btn-default">Cancel·lar</button>
+
+
+<hr>
+
+<h3>Topics</h3>
+
+<div class="list-group">
+
+    <a ng-repeat="topic in topics" href="topics/{topic.id}" class="list-group-item" >
+      {{topic.name}}
+      <span class="badge">Propostes:{{topic.proposals | size}}</span>
     </a>
-  </div>
+
+</div>
+
+<div class="list-group">
+
 
 </div>
