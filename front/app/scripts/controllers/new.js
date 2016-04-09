@@ -37,6 +37,7 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
         tra_usr_id: userId
     };
     Restangular.restangularizeElement(null, this.travel, 'travels');
+
     var me = this.travel;
 
     $scope.details = [];
@@ -58,8 +59,8 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
         },
         zoom: 10
       }
-      me.lat = $scope.details.geometry.location.lat();
-      me.lon = $scope.details.geometry.location.lng();
+      me.tra_lat = $scope.details.geometry.location.lat();
+      me.tra_long = $scope.details.geometry.location.lng();
 
       $scope.marker = {
         id: 0,
@@ -71,8 +72,8 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
         events: {
           dragend: function (marker, eventName, args) {
 
-            me.lat = marker.getPosition().lat();
-            me.lon = marker.getPosition().lng();
+            me.tra_lat = marker.getPosition().lat();
+            me.tra_long = marker.getPosition().lng();
 
             $scope.marker.options = {
               draggable: true,
@@ -105,9 +106,9 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
 
 
     $scope.save = function (){
-        $location.path('/travels/1');
-        return false;
-        this.travel.post(null, null, {}).then(function (travelData) {
+
+        console.log(me);
+       me.post(null, null, {}).then(function (travelData) {
             $location.path('/travels/' + travelData.id);
         });
     }

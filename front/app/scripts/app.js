@@ -76,8 +76,8 @@ angular
 
     console.log("app.js loaded");
 
-    RestangularProvider.setBaseUrl('http://api.trabel.me/v1/travels');
-    RestangularProvider.setRequestSuffix('.json');
+    RestangularProvider.setBaseUrl('http://api.trabel.me/v1/');
+    //RestangularProvider.setRequestSuffix('.json');
 
     $locationProvider.html5Mode({
       enabled: true,
