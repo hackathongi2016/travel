@@ -30,7 +30,7 @@ var paths = {
   ],
   karma: 'karma.conf.js',
   views: {
-    main: yeoman.app + '/views/index.html',
+    main: yeoman.app + '/index.html',
     files: [yeoman.app + '/views/**/*.html']
   }
 };
@@ -78,7 +78,17 @@ gulp.task('start:server', function() {
     root: [yeoman.app, '.tmp'],
     livereload: true,
     // Change this to '0.0.0.0' to access the server from outside.
-    port: 9000
+    port: 9000,
+
+    // ...
+    // Modrewrite rule, connect.static(path) for each path in target's base
+    middleware: function (connect, options) {
+      console.log(options);
+      var optBase = (typeof options.root === 'string') ? [options.root] : options.root;
+      return [require('connect-modrewrite')(['!(\\..+)$ / [L]'])].concat(
+        optBase.map(function(path){ return connect.static(path); }));
+    }
+
   });
 });
 
