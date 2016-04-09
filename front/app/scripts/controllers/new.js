@@ -80,7 +80,7 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
     })
     this.curDate = new Date();
 
-
+    // TOPICS
     $scope.temes = new Object();
     $scope.temes.newtema = '';
     $scope.temes.defaults = [
@@ -94,13 +94,11 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
       $scope.temes.newtema  = '';
     };
 
-
     $scope.save = function (){
        me.topics = $scope.temes.defaults;
-       console.log(me);
-       me.post(null, null, {}).then(function (travelData) {
-            $location.path('/travels/' + travelData.id);
-        });
-    }
 
+       me.post(null, null, {}).then(function (travelData) {
+           $location.path('/travels/' + travelData.data.tra_id);
+       });
+    }
 });

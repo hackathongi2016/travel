@@ -71,5 +71,4 @@ class TravelController extends ActiveController
     public function checkAccess($action, $model = null, $params = [])
     {
     }
-
 }

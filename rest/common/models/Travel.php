@@ -10,4 +10,9 @@ use \common\models\base\Travel as BaseTravel;
  */
 class Travel extends BaseTravel
 {
+	public function extraFields() {
+        $fields = parent::extraFields();
+        $fields[] = 'topics';
+        return $fields;
+    }
 }
