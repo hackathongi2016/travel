@@ -45,11 +45,12 @@ class TopicProposalController extends ActiveController
     public $modelClass = "common\models\TopicProposal";
 
 
-    public function behaviors()
-    {
-        return [
+    public function behaviors(){
+        return [];
+    }
 
-        ];
+    public function actionPreflight() {
+        return;
     }
 
     /**

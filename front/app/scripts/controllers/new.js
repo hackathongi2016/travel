@@ -10,17 +10,6 @@
 
 angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, Restangular, uiGmapGoogleMapApi, userId) {
 
-    // No userid no party
-    if(!userId){
-        window.location = "http://auth.trabel.me/login";
-    }
-
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
     $scope.showmap = false;
 
     this.travel = {
@@ -37,6 +26,7 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
         tra_usr_id: userId
     };
     Restangular.restangularizeElement(null, this.travel, 'travels');
+
     var me = this.travel;
 
     $scope.details = [];
@@ -58,8 +48,8 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
         },
         zoom: 10
       }
-      me.lat = $scope.details.geometry.location.lat();
-      me.lon = $scope.details.geometry.location.lng();
+      me.tra_lat = $scope.details.geometry.location.lat();
+      me.tra_long = $scope.details.geometry.location.lng();
 
       $scope.marker = {
         id: 0,
@@ -71,8 +61,8 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
         events: {
           dragend: function (marker, eventName, args) {
 
-            me.lat = marker.getPosition().lat();
-            me.lon = marker.getPosition().lng();
+            me.tra_lat = marker.getPosition().lat();
+            me.tra_long = marker.getPosition().lng();
 
             $scope.marker.options = {
               draggable: true,
@@ -90,7 +80,7 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
     })
     this.curDate = new Date();
 
-
+    // TOPICS
     $scope.temes = new Object();
     $scope.temes.newtema = '';
     $scope.temes.defaults = [
@@ -103,13 +93,11 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
       $scope.temes.newtema  = '';
     };
 
-
     $scope.save = function (){
-        $location.path('/travels/1');
-        return false;
-        this.travel.post(null, null, {}).then(function (travelData) {
-            $location.path('/travels/' + travelData.id);
-        });
-    }
+       me.topics = $scope.temes.defaults;
 
+       me.post(null, null, {}).then(function (travelData) {
+           $location.path('/travels/' + travelData.data.tra_id);
+       });
+    }
 });

@@ -50,9 +50,7 @@ angular
   ])
   .filter('size',function(){ return _.size; })
   .constant('userId',QueryString.userid || 1)
-  .config(function (userId,$routeProvider,$locationProvider,RestangularProvider) {
-
-    console.log("La id d'usuari és " + userId);
+  .config(function ($routeProvider,$locationProvider,RestangularProvider) {
 
     $routeProvider
       .when('/', {
@@ -76,11 +74,39 @@ angular
 
     console.log("app.js loaded");
 
-    RestangularProvider.setBaseUrl('http://api.trabel.me/v1/travels');
-    RestangularProvider.setRequestSuffix('.json');
+    RestangularProvider.setBaseUrl('http://api-travel.trabel.me/v1');
+
+    // add a response interceptor
+    RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+      var extractedData;
+      // .. to look for getList operations
+      if ((operation === "getList" || operation === "get") && _.get(data,"success")) {
+        // .. and handle the data and meta data
+        extractedData =  _.get(data,"data");
+      } else {
+        extractedData = data;
+      }
+      return extractedData;
+    });
 
     $locationProvider.html5Mode({
       enabled: true,
       requireBase: false
     });
+  })
+  .run(function($rootScope,userId){
+
+    // No userid no party
+    if(!userId){
+      window.location = "http://auth.trabel.me/login";
+    }
+
+    $rootScope.userId = userId;
   });
+
+  // Wtf men!! ^^
+  var easter_egg = new Konami();
+  easter_egg.code = function() {
+    location.href = "http://www.cadizdirecto.com/wp-content/uploads/2015/12/Popular-negro-del-guasap.jpg";
+  }
+  easter_egg.load();

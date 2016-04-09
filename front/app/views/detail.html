@@ -58,12 +58,17 @@
   </div>
 
   <div ng-if="userIsAdmin" class="row form-group">
-    <div class="col-sm-6">
-      <button type="button" class="btn" ng-click="toggleEditMode()">Editar</button>
-      <button ng-disabled="!editMode" type="submit" ng-click="save()" class="btn btn-primary btn">
+    <div class="col-sm-12">
+      <button ng-show="!editMode" type="button" class="btn" ng-click="toggleEditMode()">Editar</button>
+
+      <button ng-show="!editMode" type="submit" ng-click="delete()" class="btn btn-danger">
+        Eliminar
+      </button>
+
+      <button ng-show="editMode" type="submit" ng-click="save()" class="btn btn-primary btn">
         Guardar
       </button>
-      <button ng-disabled="!editMode" type="submit" ng-click="toggleEditMode()" class="btn">
+      <button ng-show="editMode" type="submit" ng-click="toggleEditMode()" class="btn">
         Cancel·lar
       </button>
     </div>
@@ -72,19 +77,25 @@
 
 <hr>
 
-<button type="button" class="btn btn-lg btn-primary">Unir-se</button>
+<div class="row">
 
-<hr>
+  <div class="list-group col col-sm-6">
+    <h4>Viatgers</h4>
+    <a ng-repeat="user in users" href="users/{{user.usr_id}}?userid={{userId}}" class="list-group-item">
+      {{user.usr_name}}
+    </a>
+    <br/>
+    <button ng-show="!userIsAdmin && !userIsTraveler()" type="button" class="btn btn-primary">Unir-se</button>
+    <button ng-show="!userIsAdmin && userIsTraveler()" type="button" class="btn btn-danger">Abandonar</button>
+  </div>
 
-<h3>Topics</h3>
-
-<div class="list-group">
-
-  <a ng-repeat="topic in topics" href="topics/{topic.id}" class="list-group-item">
-    {{topic.name}}
-    <span class="badge">Propostes:{{topic.proposals | size}}</span>
-  </a>
-
+  <div class="list-group col col-sm-6">
+    <h4>Temes</h4>
+    <a ng-repeat="topic in topics" href="topics/{{topic.id}}?userid={{userId}}" class="list-group-item">
+      {{topic.name}}
+      <span class="badge">Propostes:{{topic.proposals | size}}</span>
+    </a>
+  </div>
 </div>
 
 <div class="list-group">
