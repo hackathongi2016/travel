@@ -8,7 +8,7 @@
  * Controller of the trabelApp
  */
 
-angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular, uiGmapGoogleMapApi) {
+angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular, uiGmapGoogleMapApi, userId) {
 
     this.awesomeThings = [
       'HTML5 Boilerplate',
@@ -16,10 +16,23 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular,
       'Karma'
     ];
 
-    this.travel = [];
+    $scope.showmap = false;
+
+    this.travel = {
+        tra_origin: null,
+        tra_destination: null,
+        tra_num_days: 1,
+        tra_budget_min: null,
+        tra_budget_max: null,
+        tra_date: null,
+        tra_planning_limit: null,
+        tra_persons_min: 0,
+        tra_persons_max: 1,
+        tra_description: null,
+        tra_usr_id: userId
+    };
     var me = this.travel;
 
-    $scope.showmap = false;
     $scope.details = [];
     $scope.marker = [];
     this.options = {
