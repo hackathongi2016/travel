@@ -7,9 +7,8 @@
  * # NewCtrl
  * Controller of the trabelApp
  */
+
 angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular, uiGmapGoogleMapApi) {
-
-
 
     this.awesomeThings = [
       'HTML5 Boilerplate',

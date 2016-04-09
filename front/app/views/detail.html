@@ -1,9 +1,17 @@
-<div class="origen">Origen</div>
--
-<div class="destino">Destí</div>
+<h3>Detall del viatge <span class="label label-default">{{origin}}</span> - <span class="label label-default">{{destination}}</span></h3>
+<div class="container">
+  <button type="button" class="btn btn-default">Editar</button>
+  <button type="button" class="btn btn-default">Unir-se</button>
+</div>
+<hr>
+<div class="jumbotron">
+  <h3>Topics</h3>
 
-<button>Editar</button>
-<button>Unir-se</button>
-<br>
+  <div class="list-group">
+    <a ng-repeat="topic in topics" href="topics/{topic.id}" class="list-group-item active">
+      <h4 class="list-group-item-heading">{{topic.name}}</h4>
+      <p class="list-group-item-text">Propostes: {{topic.proposals | size}}</p>
+    </a>
+  </div>
 
-<div class="description">Descripció</div>
+</div>
