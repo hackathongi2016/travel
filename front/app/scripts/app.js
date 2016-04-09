@@ -50,9 +50,7 @@ angular
   ])
   .filter('size',function(){ return _.size; })
   .constant('userId',QueryString.userid || 1)
-  .config(function (userId,$routeProvider,$locationProvider,RestangularProvider) {
-
-    console.log("La id d'usuari és " + userId);
+  .config(function ($routeProvider,$locationProvider,RestangularProvider) {
 
     $routeProvider
       .when('/', {
@@ -83,4 +81,15 @@ angular
       enabled: true,
       requireBase: false
     });
+  })
+  .run(function($rootScope,userId){
+
+    // No userid no party
+    if(!userId){
+      window.location = "http://auth.trabel.me/login";
+    }
+
+    $rootScope.userId = userId;
+
+    console.log("La id d'usuari és " + userId);
   });

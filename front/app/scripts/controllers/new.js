@@ -10,17 +10,6 @@
 
 angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, Restangular, uiGmapGoogleMapApi, userId) {
 
-    // No userid no party
-    if(!userId){
-        window.location = "http://auth.trabel.me/login";
-    }
-
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
     $scope.showmap = false;
 
     this.travel = {

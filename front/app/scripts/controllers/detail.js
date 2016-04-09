@@ -63,6 +63,15 @@ angular.module('trabelApp')
     $scope.userIsAdmin = userId == travel.tra_usr_id;
     var me = this;
 
+    $scope.join = function(){
+
+    };
+
+    var userIds = _.map(users,"usr_id");
+    $scope.userIsTraveler = function(){
+      return _.includes(userIds,userId);
+    };
+
     $scope.editMode = false;
     $scope.toggleEditMode = function () {
       if (!$scope.editMode) {
@@ -91,6 +100,24 @@ angular.module('trabelApp')
         });
     };
 
+    $scope.delete = function(){
+      alert("TODO");
+    };
+
+    var users = $scope.users = [
+      {
+        usr_id: 1,
+        usr_name: "Pepito",
+        usr_surname: "Grillo",
+        usr_nickname: "",
+        usr_mail: "",
+        usr_password: "",
+        usr_birthday: "",
+        usr_gender: "",
+        usr_register_date: "",
+        usr_avatar_url: ""
+      }
+    ];
     $scope.topics = [
       {
         id       : 1,
@@ -134,4 +161,15 @@ angular.module('trabelApp')
       }
     ];
 
+    $scope.details = [];
+    $scope.marker = [];
+
+    this.curDate = new Date();
+
+    $scope.temes = {};
+    $scope.temes.newtema = '';
+    $scope.temes.defaults = [
+      {text:'Allotjament', done:true},
+      {text:'Desplaçament', done:false}
+    ];
   });
