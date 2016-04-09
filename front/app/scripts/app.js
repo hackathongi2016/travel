@@ -48,6 +48,17 @@ angular
       'pickadate'
 
   ])
+  .service('Notifications',function($rootScope){
+      return {
+        error: function(errorMessage,delay){
+          $rootScope.errorMessage = errorMessage;
+          setTimeout(function(){
+            $rootScope.errorMessage = null;
+            $rootScope.$apply();
+          },delay || 5000);
+        }
+      }
+  })
   .filter('size',function(){ return _.size; })
   .constant('userId',QueryString.userid || 1)
   .config(function ($routeProvider,$locationProvider,RestangularProvider) {
@@ -68,6 +79,11 @@ angular
         controller: 'DetailCtrl',
         controllerAs: 'detail'
       })
+      .when('/users/:userId', {
+        templateUrl: 'views/user.html',
+        controller: 'UserCtrl',
+        controllerAs: 'userDetail'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -83,7 +99,7 @@ angular
       if ((operation === "getList" || operation === "get") && _.get(data,"success")) {
         // .. and handle the data and meta data
         extractedData =  _.get(data,"data");
-      } else {
+      } else if (! _.get(data,"success")) {
         extractedData = data;
       }
       return extractedData;
