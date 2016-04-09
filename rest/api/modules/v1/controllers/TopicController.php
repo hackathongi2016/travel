@@ -86,11 +86,12 @@ class TopicController extends ActiveController
         ];
     }
 
-    public function behaviors()
-    {
-        return [
+    public function actionPreflight() {
+        return;
+    }
 
-        ];
+    public function behaviors(){
+        return [];
     }
 
     /**
