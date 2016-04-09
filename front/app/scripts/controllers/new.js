@@ -98,7 +98,7 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, $location, R
        me.topics = $scope.temes.defaults;
 
        me.post(null, null, {}).then(function (travelData) {
-           $location.path('/travels/' + travelData.data.tra_id);
+           $location.path('/travels/' + travelData.tra_id);
        });
     }
 });
