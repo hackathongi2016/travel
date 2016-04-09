@@ -12,7 +12,11 @@
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
-  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/pickdate/classic.css">
+  <link rel="stylesheet" href="/styles/pickdate/classic.date.css">
+  <link rel="stylesheet" href="/styles/pickdate/classic.time.css">
+
+  <link rel="stylesheet" href="/css" />
 
   <base href="/">
   <!-- endbuild -->
@@ -23,31 +27,35 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="header">
-  <div class="navbar navbar-default" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
+<div class="navbar navbar-default" role="navigation">
+<div class="container-fluid">
+    <nav class="row" style="background-color:#717DC5">
+        <div class="col-xs-2" >
+            <a href="http://www.trabel.me"><img src="https://github.com/hackathongi2016/docs/blob/master/dissenys/Travel_Blanc45px.png?raw=true"/></a>
+        </div>
+        <div class="col-xs-8">
+            <!-- Empty div, columna del mig de la capçalera.-->
+        </div>
+        <div class="col-xs-2 nav-div" >
+            <div class="row">
+                <div class="col-xs-6" style="text-align:center;">
 
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
+                    <a href="http://search.trabel.me">
+                        <span class="glyphicon glyphicon-search" style="color:white;font-size:25px;margin-top:10px;" aria-hidden="true"></span>
+                    </a>
 
-        <a class="navbar-brand" href="/">trabel</a>
-      </div>
+                </div>
+                <!-- Afegir color de la font al bootstrap -->
+                <div class="col-xs-6">
+                    <a href="http://www.trabel.me"><img src="https://github.com/hackathongi2016/docs/blob/master/dissenys/boto.login.transparent.png?raw=true"/></a>
 
-      <div class="collapse navbar-collapse" id="js-navbar-collapse">
+                    <!--<h4><a style="color:white" href="http://auth.trabel.me/login.php">Log in</a></h4>-->
+                </div>
+            </div>
 
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="/">Home</a></li>
-          <li><a ng-href="travels/new">Crear</a></li>
-          <li><a ng-href="travels/1">Detall</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+        </div>
+    </nav>
+</div>
 </div>
 
 <div class="container">
@@ -71,10 +79,14 @@
   ga('send', 'pageview');
 </script>
 
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+
 <!-- build:js(.) scripts/vendor.js -->
 <!-- bower:js -->
+<script src="/bower_components/lodash/dist/lodash.min.js"></script>
 <script src="/bower_components/jquery/dist/jquery.js"></script>
 <script src="/bower_components/angular/angular.min.js"></script>
+<script src="/bower_components/angular-google-maps/dist/angular-google-maps.min.js"></script>
 <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="/bower_components/angular-animate/angular-animate.js"></script>
 <script src="/bower_components/angular-aria/angular-aria.js"></script>
@@ -85,7 +97,17 @@
 <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="/bower_components/angular-touch/angular-touch.js"></script>
 <script src="/bower_components/restangular/dist/restangular.min.js"></script>
+<script src="/bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+<script src="/bower_components/ngAutocomplete/src/ngAutocomplete.js"></script>
 <script src="/bower_components/lodash/dist/lodash.min.js"></script>
+<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<script src="/scripts/utils/js/picker.js"></script>
+<script src="/scripts/utils/js/picker.date.js"></script>
+<script src="/scripts/utils/js/picker.time.js"></script>
+<script src="/bower_components/ng-pickadate/ng-pickadate.js"></script>
+
+
 <!-- endbower -->
 <!-- endbuild -->
 

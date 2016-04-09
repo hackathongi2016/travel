@@ -33,15 +33,20 @@ var QueryString = function () {
  */
 angular
   .module('trabelApp', [
-    'ngAnimate',
-    'ngAria',
-    'ngCookies',
-    'ngMessages',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-    'restangular'
+
+      'ngAnimate',
+      'ngAria',
+      'ngCookies',
+      'ngMessages',
+      'ngResource',
+      'ngRoute',
+      'ngSanitize',
+      'ngTouch',
+      'restangular',
+      'uiGmapgoogle-maps',
+      'ngAutocomplete',
+      'pickadate'
+
   ])
   .filter('size',function(){ return _.size; })
   .constant('userId',QueryString.userid || 1)

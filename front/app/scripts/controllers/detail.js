@@ -43,11 +43,51 @@ angular.module('trabelApp')
      `pro_usr_id` bigint(20) NOT NULL
      */
 
-    //Restangular.one('travels',$routeParams.travelId).get()();
-
-    $scope.origin = "Girona";
-    $scope.destination = "Barcelona";
     console.log($routeParams.travelId);
+
+    //Restangular.one('travels',$routeParams.travelId).get()();
+    $scope.travel = {
+      tra_origin: "Barcelona",
+      tra_destination: "Berlin",
+      tra_num_days: 3,
+      tra_budget_min: 500,
+      tra_budget_max: 1500,
+      tra_date: null,
+      tra_planning_limit: null,
+      tra_persons_min: 0,
+      tra_persons_max: 1,
+      tra_description: null,
+      tra_usr_id: userId
+    };
+    var me = this;
+
+    $scope.editMode = false;
+    $scope.toggleEditMode = function () {
+      if (!$scope.editMode) {
+        $('#startDate').focus().select();
+        me.backupTravel = angular.copy($scope.travel);
+      }
+      else {
+        // Desfem canvis
+        cancel();
+      }
+      $scope.editMode = !$scope.editMode;
+    };
+
+    var cancel = $scope.cancel = function () {
+      $scope.travel = me.backupTravel;
+    };
+
+    $scope.save = function () {
+      Restangular.one('travels', 1)
+        .doPut($scope.travel)
+        .then(function (data) {
+          me.backupTravel = $scope.travel;
+        }, function (error) {
+          // En cas d'error tirem enrere els canvis
+          me.originalModel = me.backupTravel;
+        });
+    };
 
     $scope.topics = [
       {
