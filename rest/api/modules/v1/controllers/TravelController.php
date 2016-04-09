@@ -52,6 +52,10 @@ class TravelController extends ActiveController
         ];
     }
 
+    public function actionPreflight() {
+        return;
+    }
+
     /**
      * Checks the privilege of the current user.
      *
