@@ -8,7 +8,7 @@
  * Controller of the trabelApp
  */
 angular.module('trabelApp')
-  .controller('DetailCtrl', function (userId, Restangular, $routeParams, $scope) {
+  .controller('DetailCtrl', function (Notifications, userId, Restangular, $routeParams, $scope) {
 
     var me = this;
     var dateFields = ["tra_date", "tra_planning_limit"];
@@ -87,11 +87,14 @@ angular.module('trabelApp')
     };
 
     $scope.save = function () {
-      Restangular.one('travels', 1)
-        .doPut($scope.travel)
+      Restangular.restangularizeElement(null,
+        datesToString(_.omit($scope.travel.plain(),["topics","users"])),
+          'travels/' + $scope.travel.tra_id)
+        .put()
         .then(function (data) {
           me.backupTravel = $scope.travel;
         }, function (error) {
+          Notifications.error("Error de connexió");
           // En cas d'error tirem enrere els canvis
           me.originalModel = me.backupTravel;
         });
