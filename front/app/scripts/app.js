@@ -45,8 +45,6 @@ angular
       'restangular',
       'uiGmapgoogle-maps',
       'ngAutocomplete',
-      'ui.bootstrap.tpls',
-      'ui.bootstrap.datepicker',
       'pickadate'
 
   ])
