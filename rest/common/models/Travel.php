@@ -22,11 +22,13 @@ class Travel extends BaseTravel
         foreach ($topicsData as $topicData) {
 
             // Create Case
-            $topic = new GroupLesson();
-            $topic->group_id = $this->tra_id;
+            $topic = new \common\models\Topic();
+
+            $topic->top_tra_id = $this->tra_id;
+            $topic->top_name = $topicData["name"];
 
             if (!$topic->save()) {
-                throw new Exception('Transaction failed: GroupLesson', $groupLesson->getErrors());
+                throw new Exception('Transaction failed: GroupLesson', $topic->getErrors());
             }
         }
     }
