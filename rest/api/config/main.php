@@ -80,7 +80,9 @@ return [
                 'OPTIONS v1/<controller:\w+>' => 'v1/travel/preflight',
                 'OPTIONS v1/<controller:\w+>/<id:\d+>' => 'v1/travel/preflight',
                 'OPTIONS v1/<controller:\w+>/<id:\d+>/<action:\w+>' => 'v1/travel/preflight',
+                'OPTIONS v1/<controller:\w+>/<id:\d+>/<id2:\d+>' => 'v1/travel/preflight',
                 'GET v1/travels/<id:\d+>/topics' => 'v1/topic/travel-topics',
+                'POST v1/travels/<id:\d+>/<id2:\d+>' => 'v1/travel/join',
             ],
         ],
 

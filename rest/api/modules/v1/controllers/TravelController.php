@@ -79,6 +79,12 @@ class TravelController extends ActiveController
                 'checkAccess' => [$this, 'checkAccess'],
                 'scenario' => $this->updateScenario,
             ],
+            'join' => [
+                'class' => 'api\modules\v1\rest\Travel\Join',
+                'modelClass' => $this->modelClass,
+                'checkAccess' => [$this, 'checkAccess'],
+                'scenario' => $this->updateScenario,
+            ],
             'options' => [
                 'class' => 'yii\rest\OptionsAction',
             ],
@@ -203,6 +209,45 @@ class CreateAction extends Action {
         }
 
         return $model;
+    }
+}
+
+namespace api\modules\v1\rest\Travel;
+
+use Yii;
+use yii\base\InvalidConfigException;
+use yii\base\Model;
+use yii\web\ForbiddenHttpException;
+use yii\rest\ActiveController;
+use yii\rest\Action;
+use common\models\Topic;
+use common\models\UserTravel;
+
+class Join extends Action {
+
+    /**
+     * @var string the scenario to be assigned to the model before it is validated and updated.
+     */
+    public $scenario = Model::SCENARIO_DEFAULT;
+
+    /**
+     * Updates an existing model.
+     * @param string $id the primary key of the model.
+     * @return \yii\db\ActiveRecordInterface the model being updated
+     * @throws ServerErrorHttpException if there is any error when updating the model
+     */
+    public function run($id, $id2) {
+
+        $travel_id = $id;
+        $usr_id = $id2;
+
+        $userTravel = new UserTravel();
+        $userTravel->ust_tra_id = $travel_id;
+        $userTravel->ust_usr_id = $usr_id;
+
+        $userTravel->save();
+
+        return $userTravel;
     }
 
 }
