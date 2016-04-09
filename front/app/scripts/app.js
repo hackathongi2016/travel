@@ -96,10 +96,10 @@ angular
     RestangularProvider.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
       var extractedData;
       // .. to look for getList operations
-      if ((operation === "getList" || operation === "get") && _.get(data,"success")) {
+      if (_.get(data,"success")) {
         // .. and handle the data and meta data
         extractedData =  _.get(data,"data");
-      } else if (! _.get(data,"success")) {
+      } else {
         extractedData = data;
       }
       return extractedData;
