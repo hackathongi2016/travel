@@ -15,7 +15,13 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular,
       'AngularJS',
       'Karma'
     ];
+
+    this.travel = [];
+    var me = this.travel;
+
+    $scope.showmap = false;
     $scope.details = [];
+    $scope.marker = [];
     this.options = {
       types: '(cities)',
       country: 'ca',
@@ -23,16 +29,41 @@ angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular,
     }
 
     $scope.$watch('details', function() {
+
       if($scope.details.length <= 0) return false;
-      console.log($scope.details.geometry);
+
       $scope.map = {
         center: {
-          latitude: ($scope.details.geometry) ? $scope.details.geometry.location.lat : $scope.details.access_points[0].location.lat,
-          longitude: ($scope.details.geometry) ? $scope.details.geometry.location.lng : $scope.details.access_points[0].location.lng,
+          latitude: $scope.details.geometry.location.lat(),
+          longitude: $scope.details.geometry.location.lng()
         },
         zoom: 10
       }
-      console.log($scope.map);
+      me.lat = $scope.details.geometry.location.lat();
+      me.lon = $scope.details.geometry.location.lng();
+
+      $scope.marker = {
+        id: 0,
+        coords: {
+          latitude: $scope.details.geometry.location.lat(),
+          longitude: $scope.details.geometry.location.lng(),
+        },
+        options: {draggable: true},
+        events: {
+          dragend: function (marker, eventName, args) {
+
+            me.lat = marker.getPosition().lat();
+            me.lon = marker.getPosition().lng();
+
+            $scope.marker.options = {
+              draggable: true,
+              labelClass: "marker-labels"
+            };
+          }
+        }
+      }
+
+      $scope.showmap = true;
     });
 
     uiGmapGoogleMapApi.then(function (maps) {
