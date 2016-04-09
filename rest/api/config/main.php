@@ -10,7 +10,7 @@ $params = array_merge(
 return [
     'id' => 'app-api',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log', 'debug'],
+    'bootstrap' => ['log'],
     'modules' => [
         'v1' => [
             'basePath' => '@app/modules/v1',
@@ -59,11 +59,15 @@ return [
             },
         ],
         'urlManager' => [
-            'enablePrettyUrl' => false,
+            'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => ['v1/travel', 'v1/topic', 'v1/topic-proposal']], // DEFAULT MODELS
+                [
+                  'class' => 'yii\rest\UrlRule',
+                  'controller' =>
+                    ['v1/travel', 'v1/topic', 'v1/topic-proposal']
+                ], // DEFAULT MODELS
             ],
         ],
 

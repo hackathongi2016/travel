@@ -2,19 +2,17 @@
 
 /**
  * @ngdoc function
- * @name trabelApp.controller:CreateCtrl
+ * @name trabelApp.controller:NewCtrl
  * @description
- * # CreateCtrl
+ * # NewCtrl
  * Controller of the trabelApp
  */
-angular.module('trabelApp')
-  .controller('CreateCtrl', function ($scope) {
-
-
-
+angular.module('trabelApp').controller('NewCtrl', function ($scope, Restangular) {
+    console.log("New");
+    
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-  });
+});

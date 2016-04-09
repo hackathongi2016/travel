@@ -56,9 +56,9 @@ angular
         controllerAs: 'main'
       })
       .when('/travels/new', {
-        templateUrl: 'views/create.html',
-        controller: 'CreateCtrl',
-        controllerAs: 'create'
+        templateUrl: 'views/new.html',
+        controller: 'NewCtrl',
+        controllerAs: 'new'
       })
       .when('/travels/:travelId', {
         templateUrl: 'views/detail.html',
