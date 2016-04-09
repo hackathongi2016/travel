@@ -60,7 +60,7 @@ angular
       }
   })
   .filter('size',function(){ return _.size; })
-  .constant('userId',QueryString.userid || 1)
+  .constant('userId',QueryString.user_id)
   .config(function ($routeProvider,$locationProvider,RestangularProvider) {
 
     $routeProvider
