@@ -193,7 +193,7 @@ class CreateAction extends Action {
             if (!$model->save()) {
                 throw new Exception('Transaction failed: Group', $model->getErrors());
             } else {
-                isset($params["topics"]){
+                if(isset($params["topics"])){
                     $model->manageTopics($params["topics"]);
                 }
             }
