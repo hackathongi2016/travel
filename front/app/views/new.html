@@ -8,7 +8,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label for="origin">Origen</label>
-                <input type="text" class="form-control" id="origin" ng-model="travel.tra_origin" placeholder="Origen" required>
+                <input type="text" class="form-control" id="origin" ng-model="new.travel.tra_origin" placeholder="Origen" required>
             </div>
         </div>
 
@@ -16,7 +16,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label for="destination">Destinació</label>
-                <input type="text" class="form-control" ng-model="travel.destination" id="destination" placeholder="Destinació" ng-autocomplete ng-model="autocomplete" options="options" details="details" required>
+                <input type="text" class="form-control" ng-model="new.travel.tra_destination" id="destination" placeholder="Destinació" ng-autocomplete options="options" details="details" required>
 
                 <ui-gmap-google-map ng-if="showmap" center='map.center' zoom='map.zoom'>
                   <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id"></ui-gmap-marker>
@@ -28,7 +28,7 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label for="days">Dies</label>
-                <input type="text" class="form-control" id="days" ng-model="travel.tra_num_days" placeholder="Dies" required>
+                <input type="text" class="form-control" id="days" ng-model="new.travel.tra_num_days" placeholder="Dies" required>
             </div>
         </div>
 
@@ -36,11 +36,11 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label for="price_max">Preu min</label>
-                <input type="text" class="form-control" id="price_max" ng-model="travel.tra_budget_min"  placeholder="Preu min" required>
+                <input type="text" class="form-control" id="price_max" ng-model="new.travel.tra_budget_min"  placeholder="Preu min" required>
             </div>
             <div class="col-md-6">
                 <label for="price_min">Preu max</label>
-                <input type="text" class="form-control" id="price_min" ng-model="travel.tra_budget_max" placeholder="Preu max" required>
+                <input type="text" class="form-control" id="price_min" ng-model="new.travel.tra_budget_max" placeholder="Preu max" required>
             </div>
         </div>
 
@@ -53,7 +53,7 @@
                         type="text"
                         class="form-control"
                         id="date-limit"
-                        ng-model="tra_date"
+                        ng-model="new.travel.tra_date"
                         pick-a-date="curDate"
                         pick-a-date-options="{ format: 'dd/mm/yy', selectYears: true }"
                         placeholder="Data sortida"
@@ -67,7 +67,7 @@
                         id="date-limit"
                         pick-a-date="curDate"
                         pick-a-date-options="{ format: 'dd/mm/yy', selectYears: true }"
-                        ng-model="tra_planning_limit"
+                        ng-model="new.travel.tra_planning_limit"
                         placeholder="Data limit"
                         required>
 
@@ -78,11 +78,11 @@
         <div class="row form-group">
             <div class="col-md-6">
                 <label for="people">Persones min</label>
-                <input type="text" class="form-control" id="people" ng-model="travel.tra_persons_min" placeholder="Persones min" required>
+                <input type="text" class="form-control" id="people" ng-model="new.travel.tra_persons_min" placeholder="Persones min" required>
             </div>
             <div class="col-md-6">
                 <label for="people">Persones max</label>
-                <input type="text" class="form-control" id="people" ng-model="travel.tra_persons_max" placeholder="Persones max" required>
+                <input type="text" class="form-control" id="people" ng-model="new.travel.tra_persons_max" placeholder="Persones max" required>
             </div>
         </div>
 
@@ -90,7 +90,7 @@
         <div class="row form-group">
             <div class="col-md-12">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" ng-model="travel.tra_description" name="description" placeholder="Description" required></textarea>
+                <textarea class="form-control" id="description" ng-model="new.travel.tra_description" name="description" placeholder="Description" required></textarea>
             </div>
         </div>
 
@@ -99,14 +99,14 @@
           <ul class="unstyled">
             <li ng-repeat="tema in temes.defaults">
               <label class="checkbox">
-                <input type="checkbox" ng-model="tema.done">
+
                 <span class="done-{{tema.done}}">{{tema.text}}</span>
               </label>
             </li>
           </ul>
 
             <input type="text" ng-model="temes.newtema"  size="30"
-                   placeholder="add new todo here">
+                   placeholder="Inserta un nou tema">
             <button class="btn-primary" type="submit" ng-click="addTema()" >Nou tema</button>
 
 
