@@ -57,13 +57,14 @@ class TravelController extends ActiveController
                 'checkAccess' => [$this, 'checkAccess'],
             ],
             'create' => [
-                'class' => 'api\modules\v1\rest\Topic\CreateAction',
+                'class' => 'api\modules\v1\rest\Travel\CreateAction',
                 'modelClass' => $this->modelClass,
                 'checkAccess' => [$this, 'checkAccess'],
                 'scenario' => $this->createScenario,
             ],
             'update' => [
-                'class' => 'api\modules\v1\rest\Topic\UpdateAction',
+                'class' => 'api\modules\v1\rest\Travel\UpdateAction',
+                'modelClass' => $this->modelClass,
                 'checkAccess' => [$this, 'checkAccess'],
                 'scenario' => $this->updateScenario,
             ],
@@ -81,13 +82,6 @@ class TravelController extends ActiveController
             'options' => [
                 'class' => 'yii\rest\OptionsAction',
             ],
-        ];
-    }
-
-    public function behaviors()
-    {
-        return [
-
         ];
     }
 
@@ -112,7 +106,7 @@ class TravelController extends ActiveController
     }
 }
 
-namespace api\modules\v1\rest\Topic;
+namespace api\modules\v1\rest\Travel;
 
 use Yii;
 use yii\base\InvalidConfigException;
@@ -163,7 +157,7 @@ class UpdateAction extends Action {
 
 }
 
-namespace api\modules\v1\rest\Topic;
+namespace api\modules\v1\rest\Travel;
 
 use Yii;
 use yii\base\InvalidConfigException;
