@@ -11,7 +11,11 @@
     <div class="row form-group">
         <div class="col-md-12">
             <label for="destination">Destinació</label>
-            <input type="text" class="form-control" id="destination" placeholder="Destinació">
+            <input type="text" class="form-control" id="destination" placeholder="Destinació" ng-autocomplete ng-model="autocomplete" options="options" details="details">
+          <pre>
+            {{details.geometry.location}}
+          </pre>
+          <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
         </div>
     </div>
 
